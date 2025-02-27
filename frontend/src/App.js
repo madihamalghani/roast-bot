@@ -9,14 +9,14 @@ function App() {
     const sendMessage = async () => {
         if (!message.trim()) return;
         setLoading(true);
-        setReply(""); // Clear previous response while loading
+        setReply(""); 
 
         try {
             const response = await axios.post("http://localhost:5000/chat", { message }, {
                 headers: { "Content-Type": "application/json" }
             });
 
-            // ✅ Handles both JSON and plain text responses
+            
             setReply(response.data.reply || response.data); 
         } catch (error) {
             setReply("🔥 Error: The roast bot took a break. Try again later! 🔥");

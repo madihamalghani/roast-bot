@@ -31,7 +31,6 @@ const savageRoasts = [
 
 app.post("/chat", async (req, res) => {
     const userInput = req.body.message;
-    console.log(`💬 User Input: ${userInput}`);
 
     const roastPrompt = `You are a savage AI roast bot. No matter what the user says, always respond with a brutal, sarcastic insult. Be witty, clever, and absolutely ruthless.
 User: "${userInput}"
@@ -44,12 +43,10 @@ RoastBot:`;
             { headers: { Authorization: `Bearer ${API_TOKEN}` } }
         );
 
-        console.log("🤖 Full API Response:", JSON.stringify(response.data, null, 2));
 
         let botReply = response.data[0]?.generated_text || response.data?.generated_text || "";
 
-        // ✅ Extract just the roast using regex
-      // Extract just the roast text
+
 let match = botReply.match(/RoastBot:\s*"(.*?)"/i);
 botReply = match ? match[1].trim() : botReply;
 
